@@ -48,10 +48,10 @@ header{
 /* Estilos para los pokemons*/
 #pokemondiv{
   display: grid;
-  grid-template-columns: 24% 24% 24% 24%;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   place-items: center;
-  gap: 10px;             
-  width: 100%;
+  gap: 15px;
+  padding: 10px;
 }
 .pokemonID:hover{
   transition: 0.4s;
@@ -64,14 +64,19 @@ header{
 }
 
 .pokemonID{
-  box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 0.3);
   font-size: 20px;
+  border-radius: 10px;
   font-weight: 700;
-  width: 42%;
-  min-width: 175px;
+  width: 100%;
   display: grid;
   place-items: center;
   transition: 0.4s;
+  padding: 8px 0;
+  border: 2px solid transparent;
+}
+.pokemonSelected{
+  border: 2px solid #2f922f;
 }
 .types{
   border-radius: 12px;
@@ -233,3 +238,82 @@ header{
   transition: 0.5s;
   color: #ff0000;
 }
+/**Pagina Index**/
+.indexPage {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  width: 100%;
+  display: grid;
+  grid-row: repeat(auto-fill, minmax(100px, 1fr));
+  place-content: center;
+  gap: 10px;
+}
+
+.buttonsIndex{
+  background-color: rgb(255, 86, 86);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: grab;
+  transition: 0.3s ease;
+}
+
+#welcomeMessage{
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.buttonsIndex:hover{
+  background-color: rgb(190, 49, 49);
+  transform: scale(1.1);
+}
+
+/** Pagina teams**/
+#teamsList{
+  display: grid;
+  place-items: center;
+  grid-template-rows: auto;
+  width: 90%;
+}
+.teamCard{
+  display: grid;
+  grid-template-rows: 15px auto auto;
+  place-items: center;
+  gap: 5px;
+  padding: 10px;
+  font-size: 20px;
+  width: 100%;
+  box-shadow: 1px 3px 5px 2px rgba(0, 0, 0, 0.3);
+}
+
+.teamPokemon{
+  box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 0.3);
+  font-size: 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  transition: 0.4s;
+  padding: 8px 0;
+  border: 2px solid transparent;
+}
+.teamPokemon:hover{
+  transition: 0.4s;
+  transform: scale(1.05);
+}
+
+.teamPokemonGrid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  place-items: center;
+  gap: 15px;
+  padding: 10px;
+  width: 100%;
+}
+
