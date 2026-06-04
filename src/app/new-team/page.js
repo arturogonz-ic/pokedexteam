@@ -29,8 +29,8 @@ export default function Home() {
   }, []);
 
   function handleCreate() {
-    if (!teamName || !teamCreator) {
-      alert("Por favor llena el nombre y creador del equipo");
+    if (!teamName || !teamCreator || !teamDescription) {
+      alert("Por favor llena el nombre, creador y descripcion del equipo");
       return;
     }
     if (selectedIds.size === 0) {
