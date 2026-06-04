@@ -1,42 +1,35 @@
 "use client";
 import { useState, useEffect } from "react";
 
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 export default function Home() {
   const [pokemonData, setPokemonData] = useState([]);
   const [selectedIds, setSelectedIds] = useState(new Set());
-  const [pokemonsSelected, setPokemonsSelected] = useState(0);
 
-  useEffect(() => {
-    setPokemonsSelected(selectedIds.size);
-  }, [selectedIds]);
+  const [teamName, setTeamName] = useState("");
+  const [teamCreator, setTeamCreator] = useState("");
+  const [teamDescription, setTeamDescription] = useState("");
 
-  useEffect(() => {
-    console.log("Pokémon seleccionados:", selectedIds.size);
-  }, [selectedIds]);
+  const pokemonsSelected = selectedIds.size;
 
   useEffect(() => {
     let mounted = true;
-    async function loadPokemon() {
-      const list = [];
-      for (let i = 1; i <= 150; i++) {
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-        const pokemon = await res.json();
-        list.push(pokemon);
-      }
-      if (mounted) setPokemonData(list);
-    }
-    loadPokemon();
-    return () => {
-      mounted = false;
-    };
+    const ids = Array.from({ length: 150 }, (_, i) => i + 1);
+    Promise.all(
+      ids.map((id) =>
+        fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => res.json())
+      )
+    ).then((results) => {
+      if (mounted) setPokemonData(results);
+    });
+    return () => { mounted = false; };
   }, []);
 
   function handleCreate() {
-    const nombre = document.getElementById("inputTeamName").value.trim();
-    const creador = document.getElementById("inputTeamCreator").value.trim();
-    const descripcion = document.getElementById("inputTeamDescription").value.trim();
-
-    if (!nombre || !creador) {
+    if (!teamName || !teamCreator) {
       alert("Por favor llena el nombre y creador del equipo");
       return;
     }
@@ -46,9 +39,9 @@ export default function Home() {
     }
 
     const nuevoEquipo = {
-      nombre,
-      creador,
-      descripcion,
+      nombre: teamName,
+      creador: teamCreator,
+      descripcion: teamDescription,
       pokemons: [...selectedIds],
     };
 
@@ -81,8 +74,8 @@ export default function Home() {
   return (
     <main>
       <header>
-        <a href="../">＜Regresar</a>
-        <div>
+        <button className="backButton"><a href="/">＜ Regresar</a></button>
+        <div className="header">
           <div id="topSection">
           <h1 id="title">Crear nuevo equipo</h1>
           <div id="teamCreationButton">
@@ -92,49 +85,29 @@ export default function Home() {
           </div>
           </div>
           <div id="team">
-                      <input
-                        type="text"
-                        placeholder="Nombre del Equipo"
-                        required
-                        className="inputTeam"
-                        id="inputTeamName"
-                      />
-                      <input
-                        type="text"
-                        placeholder="Creador del Equipo"
-                        required
-                        className="inputTeam"
-                        id="inputTeamCreator"
-                      />
-                      <input
-                        type="text"
-                        placeholder="Descripcion"
-                        required
-                        className="inputTeam"
-                        id="inputTeamDescription"
-                      />
+            <input type="text" placeholder="Nombre del Equipo" required className="inputTeam" value={teamName} onChange={(e) => setTeamName(e.target.value)} />
+            <input type="text" placeholder="Creador del Equipo" required className="inputTeam" value={teamCreator} onChange={(e) => setTeamCreator(e.target.value)} />
+            <input type="text" placeholder="Descripción" required className="inputTeam" value={teamDescription} onChange={(e) => setTeamDescription(e.target.value)} />
           </div>
-        </div>
-        <div>
-            <p id="pokemonCount" className={pokemonsSelected === 0 || pokemonsSelected === 10 ? 'limit' : ''}>Pokémon seleccionados: {pokemonsSelected}/10</p>
+          <p id="pokemonCount" className={pokemonsSelected === 0 || pokemonsSelected === 10 ? 'limit' : ''}>Pokémon seleccionados: {pokemonsSelected}/10</p>
         </div>
       </header>
 
       <div id="pokemondiv">
         {pokemonData.map((pokemon) => (
-          <div key={pokemon.id} className={`pokemonID ${selectedIds.has(pokemon.id) ? "pokemonSelected" : ""}`}>
+          <div key={pokemon.id} className={`PokemonCard ${selectedIds.has(pokemon.id) ? "PokemonCardSelected" : ""}`}>
             <img
               src={pokemon.sprites.other.home?.front_default || "/fallback.png"}
               alt={pokemon.name}
-              className="pokemonSprite"
+              className="PokemonCardSprite"
             />
-            <p className="pokemonName">
-              #{pokemon.id} {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+            <p className="PokemonCardData" title={`#${pokemon.id} ${capitalize(pokemon.name)}`}>
+              #{pokemon.id} {capitalize(pokemon.name)}
             </p>
             <div>
               {pokemon.types.map((type) => (
-                <span key={type.type.name} id={`t-${type.type.name}`} className="types">
-                  {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
+                <span key={type.type.name} id={`t-${type.type.name}`} className="PokemonCardTypes">
+                  {capitalize(type.type.name)}
                 </span>
               ))}
             </div>

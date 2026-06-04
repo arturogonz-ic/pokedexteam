@@ -41,9 +41,12 @@ export default function Teams() {
   return (
     <main>
       <header>
-        <a href="/">＜Regresar</a>
+        <button className="backButton"><a href="/">＜ Regresar</a></button>
+        <div id="topSection">
         <h1 id="title">Equipos existentes</h1>
+        </div>
       </header>
+      <div className="center">
       <div id="teamsList">
         {teams.length === 0 ? (
           <p>No hay equipos creados aún.</p>
@@ -58,14 +61,14 @@ export default function Teams() {
                 {team.pokemons.map((id) => {
                   const poke = pokemonCache[id];
                   return (
-                    <div key={id} className="teamPokemon">
+                    <div key={id} className="PokemonCard">
                       {poke ? (
                         <>
-                          <img src={poke.sprite} alt={poke.name} className="teamPokemonSprite" />
-                          <p>#{id} {poke.name}</p>
+                          <img src={poke.sprite} alt={poke.name} className="PokemonCardSprite" />
+                          <p className="PokemonCardData" title={`#${id} ${poke.name}`}>#{id} {poke.name}</p>
                           <div>
                             {poke.types.map((type) => (
-                              <span key={type} id={`t-${type}`} className="types">
+                              <span key={type} id={`t-${type}`} className="PokemonCardTypes">
                                 {type.charAt(0).toUpperCase() + type.slice(1)}
                               </span>
                             ))}
@@ -84,6 +87,7 @@ export default function Teams() {
             </div>
           ))
         )}
+      </div>
       </div>
     </main>
   );
