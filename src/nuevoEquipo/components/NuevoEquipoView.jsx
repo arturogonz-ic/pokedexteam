@@ -1,4 +1,4 @@
-import { PokemonCard } from "../../pokemon/components/PokemonCard";
+import { PokemonCardExtended } from "../../pokemon/components/PokemonCard";
 
 // Componente "tonto" — solo renderiza el formulario y la lista
 export function NuevoEquipoView({
@@ -39,7 +39,7 @@ export function NuevoEquipoView({
                     <p>Cargando Pokémon...</p>
                 ) : (
                     pokemonData.map((pokemon) => (
-                        <PokemonCard
+                        <PokemonCardExtended
                             key={pokemon.id}
                             pokemon={pokemon}
                             isSelected={selectedIds.has(pokemon.id)}

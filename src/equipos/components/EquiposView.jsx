@@ -1,4 +1,4 @@
-import { PokemonCardMini } from "../../pokemon/components/PokemonCard";
+import { PokemonCard } from "../../pokemon/components/PokemonCard";
 
 // Componente "tonto" — solo renderiza equipos
 export function EquiposView({ teams, pokemonCache, onDelete }) {
@@ -17,7 +17,7 @@ export function EquiposView({ teams, pokemonCache, onDelete }) {
                     </div>
                     <div className="teamPokemonGrid">
                         {team.pokemons.map((id) => (
-                            <PokemonCardMini key={id} id={id} pokemon={pokemonCache[id]} />
+                            <PokemonCard key={id} id={id} pokemon={pokemonCache[id]} />
                         ))}
                     </div>
                     <button type="button" onClick={() => onDelete(index)} id="eliminar">
