@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { equiposService } from "../equipos/equiposService";
+import { equiposService } from "../../equipos/services/equiposService";
 
 const MAX_POKEMON = 10;
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { pokemonService } from "./pokemonService";
+import { pokemonService } from "../services/pokemonService";
 
 // S: solo maneja estado y lógica de negocio de pokemon
 // I: expone solo lo que los componentes necesitan

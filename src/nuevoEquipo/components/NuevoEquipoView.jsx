@@ -1,4 +1,4 @@
-import { PokemonCard } from "../pokemon/PokemonCard";
+import { PokemonCard } from "../../pokemon/components/PokemonCard";
 
 // Componente "tonto" — solo renderiza el formulario y la lista
 export function NuevoEquipoView({

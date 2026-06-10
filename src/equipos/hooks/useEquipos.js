@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { equiposService } from "./equiposService";
+import { equiposService } from "../services/equiposService";
 
 // S: solo maneja estado y lógica de equipos
 export function useEquipos() {

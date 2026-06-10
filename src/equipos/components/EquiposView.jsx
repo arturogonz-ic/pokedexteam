@@ -1,4 +1,4 @@
-import { PokemonCardMini } from "../pokemon/PokemonCard";
+import { PokemonCardMini } from "../../pokemon/components/PokemonCard";
 
 // Componente "tonto" — solo renderiza equipos
 export function EquiposView({ teams, pokemonCache, onDelete }) {

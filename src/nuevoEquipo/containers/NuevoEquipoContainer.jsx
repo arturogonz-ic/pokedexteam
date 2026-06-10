@@ -1,7 +1,7 @@
 "use client";
-import { usePokemon } from "../pokemon/usePokemon";
-import { useNuevoEquipo } from "./useNuevoEquipo";
-import { NuevoEquipoView } from "./NuevoEquipoView";
+import { usePokemon } from "../../pokemon/hooks/usePokemon";
+import { useNuevoEquipo } from "../hooks/useNuevoEquipo";
+import { NuevoEquipoView } from "../components/NuevoEquipoView";
 
 // Componente "inteligente" — conecta hooks con vista
 export function NuevoEquipoContainer() {

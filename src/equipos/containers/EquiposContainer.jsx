@@ -1,6 +1,6 @@
-import { useEquipos } from "./useEquipos";
-import { usePokemonCache } from "../pokemon/usePokemon";
-import { EquiposView } from "./EquiposView";
+import { useEquipos } from "../hooks/useEquipos";
+import { usePokemonCache } from "../../pokemon/hooks/usePokemon";
+import { EquiposView } from "../components/EquiposView";
 
 // Componente "inteligente" — conecta hooks con vista
 export function EquiposContainer() {
