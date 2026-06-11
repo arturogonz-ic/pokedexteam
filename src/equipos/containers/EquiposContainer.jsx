@@ -1,3 +1,4 @@
+"use client";
 import { useEquipos } from "../hooks/useEquipos";
 import { usePokemonCache } from "../../pokemon/hooks/usePokemon";
 import { EquiposView } from "../components/EquiposView";
