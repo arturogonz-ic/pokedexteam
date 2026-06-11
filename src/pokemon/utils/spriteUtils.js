@@ -80,8 +80,8 @@ function resolve(sprites, type) {
 export function getSpriteUrl(sprites, type) {
     return (
         resolve(sprites, type) ||
-        sprites?.other?.home?.front_default ||
         sprites?.front_default ||
+        sprites?.other?.home?.front_default ||
         null
     );
 }
