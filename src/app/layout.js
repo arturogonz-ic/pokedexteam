@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${poppins.variable} h-full antialiased`}
     >
-      <body className="min-h-screen flex flex-col"><SpritePreferenceProvider><Navbar /><div className="pt-4">{children}</div></SpritePreferenceProvider></body>
+      <body className="min-h-screen flex flex-col"><SpritePreferenceProvider><Navbar /><div className="pt-4 flex-1 flex flex-col">{children}</div></SpritePreferenceProvider></body>
     </html>
   );
 }
