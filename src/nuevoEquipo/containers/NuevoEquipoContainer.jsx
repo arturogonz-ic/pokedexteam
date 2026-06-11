@@ -16,6 +16,7 @@ export function NuevoEquipoContainer() {
         teamDescription, setTeamDescription,
         toggleSelect, crearEquipo,
         filter, setFilter,
+        dialog, closeDialog,
     } = useNuevoEquipo();
 
     const filteredPokemon = filterPokemon(pokemonData, filter);
@@ -38,6 +39,8 @@ export function NuevoEquipoContainer() {
             fallbackSprite={fallbackSprite}
             filter={filter}
             onFilterChange={setFilter}
+            dialog={dialog}
+            onCloseDialog={closeDialog}
         />
     );
 }

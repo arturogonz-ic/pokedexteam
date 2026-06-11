@@ -1,5 +1,5 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
-const BATCH_SIZE = 50;
+const BATCH_SIZE = 20;
 const CACHE_KEY = "pokedex_v1";
 
 function readCache() {
@@ -33,10 +33,12 @@ export const pokemonService = {
     },
 
     getAll: async (onBatch) => {
-        // Si hay caché, devuelve instantáneamente
         const cached = readCache();
         if (cached) {
-            onBatch?.(cached);
+            for (let i = 0; i < cached.length; i += BATCH_SIZE) {
+                onBatch?.(cached.slice(0, i + BATCH_SIZE));
+                await new Promise((r) => setTimeout(r, 0));
+            }
             return cached;
         }
 

@@ -1,18 +1,15 @@
 import Link from "next/link";
+import { Button } from "../shared/components/Button";
 
 export default function IndexPage() {
   return (
     <main className="flex items-center justify-center flex-1 -mt-4">
-      <div className="grid place-items-center gap-[15px] py-[50px] px-[120px] rounded-xl shadow-[0px_2px_3px_2px_rgba(0,0,0,0.3)]">
+      <div className="grid place-items-center gap-[15px] py-[50px] px-[120px] rounded-xl shadow-[0px_2px_3px_2px_rgba(0,0,0,0.3)] bg-white dark:bg-gray-800">
         <Link href="/new-team" className="w-full">
-          <button className="w-full text-white bg-[rgb(255,86,86)] border-none rounded-[5px] font-bold cursor-grab transition-all duration-300 py-2 px-[50px] hover:bg-[rgb(190,49,49)] hover:scale-110">
-            Crear nuevo equipo
-          </button>
+          <Button className="w-full">Crear nuevo equipo</Button>
         </Link>
         <Link href="/teams" className="w-full">
-          <button className="w-full text-white bg-[rgb(255,86,86)] border-none rounded-[5px] font-bold cursor-grab transition-all duration-300 py-2 px-[50px] hover:bg-[rgb(190,49,49)] hover:scale-110">
-            Ver equipos existentes
-          </button>
+          <Button className="w-full">Ver equipos existentes</Button>
         </Link>
       </div>
     </main>

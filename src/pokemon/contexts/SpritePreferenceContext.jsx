@@ -6,12 +6,16 @@ const SpritePreferenceContext = createContext(null);
 export function SpritePreferenceProvider({ children }) {
     const [spriteType, setSpriteTypeState] = useState("home");
     const [fallbackSprite, setFallbackSpriteState] = useState("pixel");
+    const [darkMode, setDarkModeState] = useState(false);
 
     useEffect(() => {
-        const savedType = localStorage.getItem("spriteType");
+        const savedType     = localStorage.getItem("spriteType");
         const savedFallback = localStorage.getItem("fallbackSprite");
-        if (savedType) setSpriteTypeState(savedType);
+        const savedDark     = localStorage.getItem("darkMode") === "true";
+        if (savedType)    setSpriteTypeState(savedType);
         if (savedFallback) setFallbackSpriteState(savedFallback);
+        setDarkModeState(savedDark);
+        document.documentElement.classList.toggle("dark", savedDark);
     }, []);
 
     function setSpriteType(value) {
@@ -24,8 +28,14 @@ export function SpritePreferenceProvider({ children }) {
         setFallbackSpriteState(value);
     }
 
+    function setDarkMode(value) {
+        localStorage.setItem("darkMode", value);
+        setDarkModeState(value);
+        document.documentElement.classList.toggle("dark", value);
+    }
+
     return (
-        <SpritePreferenceContext.Provider value={{ spriteType, setSpriteType, fallbackSprite, setFallbackSprite }}>
+        <SpritePreferenceContext.Provider value={{ spriteType, setSpriteType, fallbackSprite, setFallbackSprite, darkMode, setDarkMode }}>
             {children}
         </SpritePreferenceContext.Provider>
     );

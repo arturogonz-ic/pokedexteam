@@ -4,7 +4,6 @@ import { equiposService } from "../../equipos/services/equiposService";
 
 const MAX_POKEMON = 10;
 
-// S: solo maneja lógica de creación de equipo
 export function useNuevoEquipo() {
     const router = useRouter();
     const [selectedIds, setSelectedIds] = useState(new Set());
@@ -12,6 +11,9 @@ export function useNuevoEquipo() {
     const [teamCreator, setTeamCreator] = useState("");
     const [teamDescription, setTeamDescription] = useState("");
     const [filter, setFilter] = useState("all");
+    const [dialog, setDialog] = useState(null); // { title, message, onClose? }
+
+    function closeDialog() { setDialog(null); }
 
     function toggleSelect(id) {
         setSelectedIds((prev) => {
@@ -20,7 +22,7 @@ export function useNuevoEquipo() {
                 next.delete(id);
             } else {
                 if (prev.size >= MAX_POKEMON) {
-                    alert(`No puedes seleccionar más de ${MAX_POKEMON} Pokémon`);
+                    setDialog({ title: "Límite alcanzado", message: `No puedes seleccionar más de ${MAX_POKEMON} Pokémon.` });
                     return prev;
                 }
                 next.add(id);
@@ -31,11 +33,11 @@ export function useNuevoEquipo() {
 
     function crearEquipo() {
         if (!teamName || !teamCreator || !teamDescription) {
-            alert("Por favor llena el nombre, creador y descripcion del equipo");
+            setDialog({ title: "Campos incompletos", message: "Por favor llena el nombre, creador y descripción del equipo." });
             return;
         }
         if (selectedIds.size === 0) {
-            alert("Selecciona al menos un Pokémon");
+            setDialog({ title: "Sin Pokémon", message: "Selecciona al menos un Pokémon." });
             return;
         }
         equiposService.save({
@@ -44,8 +46,7 @@ export function useNuevoEquipo() {
             descripcion: teamDescription,
             pokemons: [...selectedIds],
         });
-        alert("¡Equipo creado exitosamente!");
-        router.push("/teams");
+        setDialog({ title: "¡Éxito!", message: "Equipo creado exitosamente.", onClose: () => router.push("/teams") });
     }
 
     return {
@@ -57,5 +58,6 @@ export function useNuevoEquipo() {
         crearEquipo,
         pokemonsSelected: selectedIds.size,
         filter, setFilter,
+        dialog, closeDialog,
     };
 }
