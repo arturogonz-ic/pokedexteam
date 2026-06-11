@@ -22,19 +22,21 @@
   z-index: 100;
 }
 #navLogo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 18px;
   font-weight: 700;
-  color: rgb(255, 86, 86);
+  color: #222;
   text-decoration: none;
 }
 #navSettings {
-  font-size: 14px;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
   color: #555;
   text-decoration: none;
-  padding: 6px 14px;
+  padding: 6px;
   border-radius: 8px;
-  border: 1px solid #ccc;
   transition: 0.2s;
 }
 #navSettings:hover {
