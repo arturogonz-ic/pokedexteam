@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import "../styles/navbar.css";
 import { usePathname } from "next/navigation";
 import { useSpritePreference } from "../../pokemon/hooks/useSpritePreference";
 import { SPRITE_OPTIONS, FALLBACK_OPTIONS } from "../../pokemon/utils/spriteUtils";

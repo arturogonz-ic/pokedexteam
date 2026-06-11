@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "../navbar/styles/navbar.css";
 @import "../pokemon/styles/pokemon.css";
 @import "../equipos/styles/equipos.css";
 @import "../nuevoEquipo/styles/nuevoEquipo.css";
