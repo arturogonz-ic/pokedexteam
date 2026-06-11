@@ -1,5 +1,5 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
-const BATCH_SIZE = 100;
+const BATCH_SIZE = 50;
 const CACHE_KEY = "pokedex_v1";
 
 function readCache() {
