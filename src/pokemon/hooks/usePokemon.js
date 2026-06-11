@@ -10,9 +10,8 @@ export function usePokemon() {
     useEffect(() => {
         let mounted = true;
         pokemonService
-            .getRange(1, 151)
-            .then((results) => { if (mounted) setPokemonData(results); })
-            .finally(() => setLoading(false));
+            .getAll((batch) => { if (mounted) setPokemonData(batch); })
+            .finally(() => { if (mounted) setLoading(false); });
         return () => { mounted = false; };
     }, []);
 
