@@ -43,10 +43,15 @@
   align-items: center;
   justify-content: flex-end;
 }
+#pokemonCountRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+}
 #pokemonCount {
   color: #000000;
   transition: 0.5s;
-  margin-left: 15px;
 }
 #pokemonCount.limit { color: #ff0000; }
 .createButton {

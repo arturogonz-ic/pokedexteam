@@ -15,20 +15,9 @@ export function NuevoEquipoView({
                 <div className="header">
                     <div id="topSection">
                         <h1 id="title">Crear nuevo equipo</h1>
-                        <div id="teamCreationButton">
-                            <select
-                                id="filterSelector"
-                                value={filter}
-                                onChange={(e) => onFilterChange(e.target.value)}
-                            >
-                                {FILTER_OPTIONS.map((opt) => (
-                                    <option key={opt.value} value={opt.value}>{opt.label}</option>
-                                ))}
-                            </select>
-                            <button type="button" className="createButton" onClick={onCrear}>
-                                ! Crear !
-                            </button>
-                        </div>
+                        <button type="button" className="createButton" onClick={onCrear}>
+                            ! Crear !
+                        </button>
                     </div>
                     <div id="team">
                         <input type="text" placeholder="Nombre del Equipo" required className="inputTeam"
@@ -38,9 +27,20 @@ export function NuevoEquipoView({
                         <input type="text" placeholder="Descripción" required className="inputTeam"
                             value={teamDescription} onChange={(e) => onTeamDescriptionChange(e.target.value)} />
                     </div>
-                    <p id="pokemonCount" className={pokemonsSelected === 0 || pokemonsSelected === 10 ? "limit" : ""}>
-                        Pokémon seleccionados: {pokemonsSelected}/10
-                    </p>
+                    <div id="pokemonCountRow">
+                        <p id="pokemonCount" className={pokemonsSelected === 0 || pokemonsSelected === 10 ? "limit" : ""}>
+                            Pokémon seleccionados: {pokemonsSelected}/10
+                        </p>
+                        <select
+                            id="filterSelector"
+                            value={filter}
+                            onChange={(e) => onFilterChange(e.target.value)}
+                        >
+                            {FILTER_OPTIONS.map((opt) => (
+                                <option key={opt.value} value={opt.value}>{opt.label}</option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
             </header>
 
