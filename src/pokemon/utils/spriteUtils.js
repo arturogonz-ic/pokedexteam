@@ -33,7 +33,7 @@ export const SPRITE_OPTIONS = [
     { value: "gen-ix-sv",               label: "Gen IX - Escarlata/Púrpura" },
 ];
 
-export function getSpriteUrl(sprites, type) {
+function resolve(sprites, type) {
     const v = sprites?.versions;
     const o = sprites?.other;
     switch (type) {
@@ -75,4 +75,13 @@ export function getSpriteUrl(sprites, type) {
         case "home":
         default:                       return o?.home?.front_default;
     }
+}
+
+export function getSpriteUrl(sprites, type) {
+    return (
+        resolve(sprites, type) ||
+        sprites?.other?.home?.front_default ||
+        sprites?.front_default ||
+        null
+    );
 }
