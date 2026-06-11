@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { equiposService } from "../../equipos/services/equiposService";
 
 const MAX_POKEMON = 10;
 
 // S: solo maneja lógica de creación de equipo
 export function useNuevoEquipo() {
+    const router = useRouter();
     const [selectedIds, setSelectedIds] = useState(new Set());
     const [teamName, setTeamName] = useState("");
     const [teamCreator, setTeamCreator] = useState("");
@@ -43,7 +45,7 @@ export function useNuevoEquipo() {
             pokemons: [...selectedIds],
         });
         alert("¡Equipo creado exitosamente!");
-        window.location.href = "/teams";
+        router.push("/teams");
     }
 
     return {

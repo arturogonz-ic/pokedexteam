@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PokemonCard } from "../../pokemon/components/PokemonCard";
 import { SPRITE_OPTIONS } from "../../pokemon/utils/spriteUtils";
 
@@ -6,7 +7,7 @@ export function EquiposView({ teams, pokemonCache, onDelete, spriteType, onSprit
     return (
         <main>
             <header>
-                <button className="backButton"><a href="/">＜ Regresar</a></button>
+                <Link href="/" className="backButton">＜ Regresar</Link>
                 <div id="topSection">
                     <h1 id="title">Equipos existentes</h1>
                     <select

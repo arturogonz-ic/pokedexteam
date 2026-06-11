@@ -1,6 +1,7 @@
+import Link from "next/link";
 import { PokemonCardExtended } from "../../pokemon/components/PokemonCard";
 import { SPRITE_OPTIONS } from "../../pokemon/utils/spriteUtils";
-import { FILTER_OPTIONS} from "../../pokemon/utils/filterUtils";
+import { FILTER_OPTIONS } from "../../pokemon/utils/filterUtils";
 
 export function NuevoEquipoView({
     pokemonData, loading, selectedIds, pokemonsSelected,
@@ -13,7 +14,7 @@ export function NuevoEquipoView({
     return (
         <main>
             <header>
-                <button className="backButton"><a href="/">＜ Regresar</a></button>
+                <Link href="/" className="backButton">＜ Regresar</Link>
                 <div className="header">
                     <div id="topSection">
                         <h1 id="title">Crear nuevo equipo</h1>
