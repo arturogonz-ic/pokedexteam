@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { equiposService } from "../../equipos/services/equiposService";
 
 const MAX_POKEMON = 10;
@@ -9,12 +9,6 @@ export function useNuevoEquipo() {
     const [teamName, setTeamName] = useState("");
     const [teamCreator, setTeamCreator] = useState("");
     const [teamDescription, setTeamDescription] = useState("");
-    const [spriteType, setSpriteType] = useState("home");
-
-    useEffect(() => {
-        const saved = localStorage.getItem("spriteType");
-        if (saved) setSpriteType(saved);
-    }, []);
 
     function toggleSelect(id) {
         setSelectedIds((prev) => {
@@ -59,10 +53,5 @@ export function useNuevoEquipo() {
         toggleSelect,
         crearEquipo,
         pokemonsSelected: selectedIds.size,
-        spriteType,
-        setSpriteType: (value) => {
-            localStorage.setItem("spriteType", value);
-            setSpriteType(value);
-        },
     };
 }

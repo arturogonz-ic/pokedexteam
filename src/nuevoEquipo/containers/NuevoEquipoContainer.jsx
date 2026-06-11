@@ -1,18 +1,19 @@
 "use client";
 import { usePokemon } from "../../pokemon/hooks/usePokemon";
+import { useSpritePreference } from "../../pokemon/hooks/useSpritePreference";
 import { useNuevoEquipo } from "../hooks/useNuevoEquipo";
 import { NuevoEquipoView } from "../components/NuevoEquipoView";
 
 // Componente "inteligente" — conecta hooks con vista
 export function NuevoEquipoContainer() {
     const { pokemonData, loading } = usePokemon();
+    const { spriteType, setSpriteType } = useSpritePreference();
     const {
         selectedIds, pokemonsSelected,
         teamName, setTeamName,
         teamCreator, setTeamCreator,
         teamDescription, setTeamDescription,
         toggleSelect, crearEquipo,
-        spriteType, setSpriteType,
     } = useNuevoEquipo();
 
     return (
