@@ -1,13 +1,23 @@
 import { PokemonCard } from "../../pokemon/components/PokemonCard";
+import { SPRITE_OPTIONS } from "../../pokemon/utils/spriteUtils";
 
 // Componente "tonto" — solo renderiza equipos
-export function EquiposView({ teams, pokemonCache, onDelete }) {
+export function EquiposView({ teams, pokemonCache, onDelete, spriteType, onSpriteTypeChange }) {
     return (
         <main>
             <header>
                 <button className="backButton"><a href="/">＜ Regresar</a></button>
                 <div id="topSection">
                     <h1 id="title">Equipos existentes</h1>
+                    <select
+                        id="spriteSelector"
+                        value={spriteType}
+                        onChange={(e) => onSpriteTypeChange(e.target.value)}
+                    >
+                        {SPRITE_OPTIONS.map((opt) => (
+                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        ))}
+                    </select>
                 </div>
             </header>
             <div className="center">
@@ -26,7 +36,7 @@ export function EquiposView({ teams, pokemonCache, onDelete }) {
                                 </div>
                                 <div className="teamPokemonGrid">
                                     {team.pokemons.map((id) => (
-                                        <PokemonCard key={id} id={id} pokemon={pokemonCache[id]} />
+                                        <PokemonCard key={id} id={id} pokemon={pokemonCache[id]} spriteType={spriteType} />
                                     ))}
                                 </div>
                                 <button type="button" onClick={() => onDelete(index)} id="eliminar">

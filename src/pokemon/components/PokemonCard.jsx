@@ -21,16 +21,12 @@ function PokemonCardContent({ id, name, sprite, types }) {
 }
 
 // Base — muestra info del pokemon, sin interacción
-export function PokemonCard({ id, pokemon }) {
+export function PokemonCard({ id, pokemon, spriteType = "home" }) {
     if (!pokemon) return <p>Cargando #{id}...</p>;
+    const sprite = getSpriteUrl(pokemon.sprites, spriteType);
     return (
         <div className="PokemonCard">
-            <PokemonCardContent
-                id={id}
-                name={pokemon.name}
-                sprite={pokemon.sprite}
-                types={pokemon.types}
-            />
+            <PokemonCardContent id={id} name={pokemon.name} sprite={sprite} types={pokemon.types} />
         </div>
     );
 }

@@ -10,7 +10,7 @@ export function usePokemon() {
     useEffect(() => {
         let mounted = true;
         pokemonService
-            .getRange(1, 150)
+            .getRange(1, 151)
             .then((results) => { if (mounted) setPokemonData(results); })
             .finally(() => setLoading(false));
         return () => { mounted = false; };
@@ -30,7 +30,7 @@ export function usePokemonCache(ids) {
                     id,
                     data: {
                         name: data.name.charAt(0).toUpperCase() + data.name.slice(1),
-                        sprite: data.sprites.other.home?.front_default || data.sprites.front_default,
+                        sprites: data.sprites,
                         types: data.types.map((t) => t.type.name),
                     },
                 }))
