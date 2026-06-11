@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { PokemonCard } from "../../pokemon/components/PokemonCard";
 
 // Componente "tonto" — solo renderiza equipos
@@ -6,7 +5,6 @@ export function EquiposView({ teams, pokemonCache, onDelete, spriteType, fallbac
     return (
         <main>
             <header>
-                <Link href="/" className="backButton">＜ Regresar</Link>
                 <div id="topSection">
                     <h1 id="title">Equipos existentes</h1>
                 </div>

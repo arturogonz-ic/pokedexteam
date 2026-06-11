@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { PokemonCardExtended } from "../../pokemon/components/PokemonCard";
 import { FILTER_OPTIONS } from "../../pokemon/utils/filterUtils";
 
@@ -13,7 +12,6 @@ export function NuevoEquipoView({
     return (
         <main>
             <header>
-                <Link href="/" className="backButton">＜ Regresar</Link>
                 <div className="header">
                     <div id="topSection">
                         <h1 id="title">Crear nuevo equipo</h1>
