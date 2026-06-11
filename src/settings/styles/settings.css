@@ -1,0 +1,34 @@
+#settingsContent {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.settingRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 0.1);
+}
+.settingLabel {
+  font-size: 18px;
+  font-weight: 700;
+}
+.settingDesc {
+  font-size: 13px;
+  color: #666;
+}
+.settingSelect {
+  margin-top: 6px;
+  padding: 8px 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f5f5f5;
+  cursor: pointer;
+  width: fit-content;
+}

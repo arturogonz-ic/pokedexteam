@@ -1,19 +1,25 @@
 import { useState, useEffect } from "react";
 
-const STORAGE_KEY = "spriteType";
-
 export function useSpritePreference() {
     const [spriteType, setSpriteTypeState] = useState("home");
+    const [fallbackSprite, setFallbackSpriteState] = useState("pixel");
 
     useEffect(() => {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) setSpriteTypeState(saved);
+        const savedType = localStorage.getItem("spriteType");
+        const savedFallback = localStorage.getItem("fallbackSprite");
+        if (savedType) setSpriteTypeState(savedType);
+        if (savedFallback) setFallbackSpriteState(savedFallback);
     }, []);
 
     function setSpriteType(value) {
-        localStorage.setItem(STORAGE_KEY, value);
+        localStorage.setItem("spriteType", value);
         setSpriteTypeState(value);
     }
 
-    return { spriteType, setSpriteType };
+    function setFallbackSprite(value) {
+        localStorage.setItem("fallbackSprite", value);
+        setFallbackSpriteState(value);
+    }
+
+    return { spriteType, setSpriteType, fallbackSprite, setFallbackSprite };
 }

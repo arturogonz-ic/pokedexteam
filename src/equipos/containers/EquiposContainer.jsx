@@ -8,7 +8,7 @@ import { EquiposView } from "../components/EquiposView";
 export function EquiposContainer() {
     const { teams, eliminar, allPokemonIds } = useEquipos();
     const pokemonCache = usePokemonCache(allPokemonIds);
-    const { spriteType, setSpriteType } = useSpritePreference();
+    const { spriteType, fallbackSprite } = useSpritePreference();
 
     return (
         <EquiposView
@@ -16,7 +16,7 @@ export function EquiposContainer() {
             pokemonCache={pokemonCache}
             onDelete={eliminar}
             spriteType={spriteType}
-            onSpriteTypeChange={setSpriteType}
+            fallbackSprite={fallbackSprite}
         />
     );
 }

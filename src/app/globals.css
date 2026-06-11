@@ -2,10 +2,44 @@
 @import "../pokemon/styles/pokemon.css";
 @import "../equipos/styles/equipos.css";
 @import "../nuevoEquipo/styles/nuevoEquipo.css";
+@import "../settings/styles/settings.css";
 
 :root {
   --background: #ffffff;
   --foreground: #000000;
+}
+
+/* Navbar */
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+#navLogo {
+  font-size: 18px;
+  font-weight: 700;
+  color: rgb(255, 86, 86);
+  text-decoration: none;
+}
+#navSettings {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: 0.2s;
+}
+#navSettings:hover {
+  background: #f5f5f5;
+  color: #000;
 }
 
 /* Base */

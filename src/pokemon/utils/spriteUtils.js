@@ -77,11 +77,11 @@ function resolve(sprites, type) {
     }
 }
 
-export function getSpriteUrl(sprites, type) {
+export function getSpriteUrl(sprites, type, fallback = "pixel") {
     return (
         resolve(sprites, type) ||
+        resolve(sprites, fallback) ||
         sprites?.front_default ||
-        sprites?.other?.home?.front_default ||
         null
     );
 }

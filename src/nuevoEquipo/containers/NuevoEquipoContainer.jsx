@@ -8,7 +8,7 @@ import { NuevoEquipoView } from "../components/NuevoEquipoView";
 // Componente "inteligente" — conecta hooks con vista
 export function NuevoEquipoContainer() {
     const { pokemonData, loading } = usePokemon();
-    const { spriteType, setSpriteType } = useSpritePreference();
+    const { spriteType, fallbackSprite } = useSpritePreference();
     const {
         selectedIds, pokemonsSelected,
         teamName, setTeamName,
@@ -35,7 +35,7 @@ export function NuevoEquipoContainer() {
             onToggle={toggleSelect}
             onCrear={crearEquipo}
             spriteType={spriteType}
-            onSpriteTypeChange={setSpriteType}
+            fallbackSprite={fallbackSprite}
             filter={filter}
             onFilterChange={setFilter}
         />

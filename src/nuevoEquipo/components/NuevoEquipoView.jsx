@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { PokemonCardExtended } from "../../pokemon/components/PokemonCard";
-import { SPRITE_OPTIONS } from "../../pokemon/utils/spriteUtils";
 import { FILTER_OPTIONS } from "../../pokemon/utils/filterUtils";
 
 export function NuevoEquipoView({
@@ -8,8 +7,8 @@ export function NuevoEquipoView({
     teamName, teamCreator, teamDescription,
     onTeamNameChange, onTeamCreatorChange, onTeamDescriptionChange,
     onToggle, onCrear,
-    spriteType, onSpriteTypeChange,
-    filter, onFilterChange
+    spriteType, fallbackSprite,
+    filter, onFilterChange,
 }) {
     return (
         <main>
@@ -24,14 +23,7 @@ export function NuevoEquipoView({
                                 value={filter}
                                 onChange={(e) => onFilterChange(e.target.value)}
                             >
-                                {FILTER_OPTIONS.map((opt) => (<option key={opt.value} value={opt.value}>{opt.label}</option>))}
-                            </select>
-                            <select
-                                id="spriteSelector"
-                                value={spriteType}
-                                onChange={(e) => onSpriteTypeChange(e.target.value)}
-                            >
-                                {SPRITE_OPTIONS.map((opt) => (
+                                {FILTER_OPTIONS.map((opt) => (
                                     <option key={opt.value} value={opt.value}>{opt.label}</option>
                                 ))}
                             </select>
@@ -66,6 +58,7 @@ export function NuevoEquipoView({
                                 isSelected={selectedIds.has(pokemon.id)}
                                 onToggle={onToggle}
                                 spriteType={spriteType}
+                                fallbackSprite={fallbackSprite}
                             />
                         ))}
                         {loading && <p id="loadingMore">Cargando más Pokémon...</p>}

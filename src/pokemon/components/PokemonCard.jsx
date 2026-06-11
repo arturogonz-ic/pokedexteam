@@ -21,9 +21,9 @@ function PokemonCardContent({ id, name, sprite, types }) {
 }
 
 // Base — muestra info del pokemon, sin interacción
-export function PokemonCard({ id, pokemon, spriteType = "home" }) {
+export function PokemonCard({ id, pokemon, spriteType = "home", fallbackSprite = "pixel" }) {
     if (!pokemon) return <p>Cargando #{id}...</p>;
-    const sprite = getSpriteUrl(pokemon.sprites, spriteType);
+    const sprite = getSpriteUrl(pokemon.sprites, spriteType, fallbackSprite);
     return (
         <div className="PokemonCard">
             <PokemonCardContent id={id} name={pokemon.name} sprite={sprite} types={pokemon.types} />
@@ -31,10 +31,9 @@ export function PokemonCard({ id, pokemon, spriteType = "home" }) {
     );
 }
 
-// Extended — extiende PokemonCard con selección, botón y sprite selector
-export function PokemonCardExtended({ pokemon, isSelected, onToggle, spriteType = "home" }) {
+export function PokemonCardExtended({ pokemon, isSelected, onToggle, spriteType = "home", fallbackSprite = "pixel" }) {
     const name   = capitalize(pokemon.name);
-    const sprite = getSpriteUrl(pokemon.sprites, spriteType);
+    const sprite = getSpriteUrl(pokemon.sprites, spriteType, fallbackSprite);
     const types  = pokemon.types.map((t) => t.type.name);
 
     return (
