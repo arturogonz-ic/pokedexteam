@@ -2,6 +2,7 @@
 import { usePokemon } from "../../pokemon/hooks/usePokemon";
 import { useSpritePreference } from "../../pokemon/hooks/useSpritePreference";
 import { useNuevoEquipo } from "../hooks/useNuevoEquipo";
+import { filterPokemon } from "../../pokemon/utils/filterUtils";
 import { NuevoEquipoView } from "../components/NuevoEquipoView";
 
 // Componente "inteligente" — conecta hooks con vista
@@ -14,11 +15,14 @@ export function NuevoEquipoContainer() {
         teamCreator, setTeamCreator,
         teamDescription, setTeamDescription,
         toggleSelect, crearEquipo,
+        filter, setFilter,
     } = useNuevoEquipo();
+
+    const filteredPokemon = filterPokemon(pokemonData, filter);
 
     return (
         <NuevoEquipoView
-            pokemonData={pokemonData}
+            pokemonData={filteredPokemon}
             loading={loading}
             selectedIds={selectedIds}
             pokemonsSelected={pokemonsSelected}
@@ -32,6 +36,8 @@ export function NuevoEquipoContainer() {
             onCrear={crearEquipo}
             spriteType={spriteType}
             onSpriteTypeChange={setSpriteType}
+            filter={filter}
+            onFilterChange={setFilter}
         />
     );
 }
