@@ -55,18 +55,21 @@ export function NuevoEquipoView({
             </header>
 
             <div id="pokemondiv">
-                {loading ? (
+                {pokemonData.length === 0 ? (
                     <p>Cargando Pokémon...</p>
                 ) : (
-                    pokemonData.map((pokemon) => (
-                        <PokemonCardExtended
-                            key={pokemon.id}
-                            pokemon={pokemon}
-                            isSelected={selectedIds.has(pokemon.id)}
-                            onToggle={onToggle}
-                            spriteType={spriteType}
-                        />
-                    ))
+                    <>
+                        {pokemonData.map((pokemon) => (
+                            <PokemonCardExtended
+                                key={pokemon.id}
+                                pokemon={pokemon}
+                                isSelected={selectedIds.has(pokemon.id)}
+                                onToggle={onToggle}
+                                spriteType={spriteType}
+                            />
+                        ))}
+                        {loading && <p id="loadingMore">Cargando más Pokémon...</p>}
+                    </>
                 )}
             </div>
         </main>
