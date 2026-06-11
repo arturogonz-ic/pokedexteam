@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [screaming-solid-subdivided]
+    branches: [app-router-modules]
 
 permissions:
   contents: read
