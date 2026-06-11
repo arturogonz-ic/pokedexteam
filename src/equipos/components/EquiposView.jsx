@@ -4,11 +4,6 @@ import { PokemonCard } from "../../pokemon/components/PokemonCard";
 export function EquiposView({ teams, pokemonCache, onDelete, spriteType, fallbackSprite }) {
     return (
         <main>
-            <header>
-                <div id="topSection">
-                    <h1 id="title">Equipos existentes</h1>
-                </div>
-            </header>
             <div className="center">
                 {teams.length === 0 ? (
                     <p>No hay equipos creados aún.</p>

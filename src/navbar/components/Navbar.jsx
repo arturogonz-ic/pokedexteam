@@ -1,12 +1,22 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useSpritePreference } from "../../pokemon/hooks/useSpritePreference";
 import { SPRITE_OPTIONS, FALLBACK_OPTIONS } from "../../pokemon/utils/spriteUtils";
+
+const PAGE_TITLES = {
+    "/new-team": "Crear nuevo equipo",
+    "/teams":    "Equipos existentes",
+};
 
 export function Navbar() {
     const [open, setOpen] = useState(false);
     const { spriteType, setSpriteType, fallbackSprite, setFallbackSprite } = useSpritePreference();
+    const pathname = usePathname();
+    const basePath = "/pokedexteam";
+    const route = pathname.startsWith(basePath) ? pathname.slice(basePath.length) || "/" : pathname;
+    const pageTitle = PAGE_TITLES[route];
 
     return (
         <>
@@ -21,6 +31,7 @@ export function Navbar() {
                     </svg>
                     PokeAPP Teams
                 </Link>
+                {pageTitle && <span id="navPageTitle">{pageTitle}</span>}
                 <button id="navSettings" aria-label="Configuración" onClick={() => setOpen(true)}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="12" cy="12" r="3"/>

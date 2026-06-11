@@ -14,7 +14,6 @@ export function NuevoEquipoView({
             <header>
                 <div className="header">
                     <div id="topSection">
-                        <h1 id="title">Crear nuevo equipo</h1>
                         <button type="button" className="createButton" onClick={onCrear}>
                             ! Crear !
                         </button>
