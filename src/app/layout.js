@@ -1,7 +1,7 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "../navbar/components/Navbar";
-import { Providers } from "./components/Providers";
+import { SpritePreferenceProvider } from "../pokemon/contexts/SpritePreferenceContext";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${poppins.variable} h-full antialiased`}
     >
-      <body className="min-h-screen flex flex-col"><Providers><Navbar /><div className="pt-4">{children}</div></Providers></body>
+      <body className="min-h-screen flex flex-col"><SpritePreferenceProvider><Navbar /><div className="pt-4">{children}</div></SpritePreferenceProvider></body>
     </html>
   );
 }
