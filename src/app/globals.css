@@ -142,6 +142,7 @@
 
 /* Base */
 main {
+  margin-top: 16px;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-poppins), Arial, sans-serif;
