@@ -12,6 +12,7 @@ export function NuevoEquipoContainer() {
         teamCreator, setTeamCreator,
         teamDescription, setTeamDescription,
         toggleSelect, crearEquipo,
+        spriteType, setSpriteType,
     } = useNuevoEquipo();
 
     return (
@@ -28,6 +29,8 @@ export function NuevoEquipoContainer() {
             onTeamDescriptionChange={setTeamDescription}
             onToggle={toggleSelect}
             onCrear={crearEquipo}
+            spriteType={spriteType}
+            onSpriteTypeChange={setSpriteType}
         />
     );
 }

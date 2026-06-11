@@ -1,11 +1,12 @@
 import { PokemonCardExtended } from "../../pokemon/components/PokemonCard";
+import { SPRITE_OPTIONS } from "../../pokemon/utils/spriteUtils";
 
-// Componente "tonto" — solo renderiza el formulario y la lista
 export function NuevoEquipoView({
     pokemonData, loading, selectedIds, pokemonsSelected,
     teamName, teamCreator, teamDescription,
     onTeamNameChange, onTeamCreatorChange, onTeamDescriptionChange,
     onToggle, onCrear,
+    spriteType, onSpriteTypeChange,
 }) {
     return (
         <main>
@@ -15,6 +16,15 @@ export function NuevoEquipoView({
                     <div id="topSection">
                         <h1 id="title">Crear nuevo equipo</h1>
                         <div id="teamCreationButton">
+                            <select
+                                id="spriteSelector"
+                                value={spriteType}
+                                onChange={(e) => onSpriteTypeChange(e.target.value)}
+                            >
+                                {SPRITE_OPTIONS.map((opt) => (
+                                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                                ))}
+                            </select>
                             <button type="button" className="createButton" onClick={onCrear}>
                                 ! Crear !
                             </button>
@@ -44,6 +54,7 @@ export function NuevoEquipoView({
                             pokemon={pokemon}
                             isSelected={selectedIds.has(pokemon.id)}
                             onToggle={onToggle}
+                            spriteType={spriteType}
                         />
                     ))
                 )}

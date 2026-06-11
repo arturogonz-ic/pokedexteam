@@ -42,7 +42,11 @@
   border: 2px solid transparent;
 }
 .PokemonCard:hover { transform: scale(1.08); }
-.PokemonCardSprite { width: 200px; height: auto; }
+.PokemonCardSprite {
+  width: auto;
+  height: 160px;
+  object-fit: contain;
+}
 .PokemonCardData {
   text-align: center;
   white-space: nowrap;

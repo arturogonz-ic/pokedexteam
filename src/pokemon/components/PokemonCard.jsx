@@ -1,12 +1,13 @@
+import { getSpriteUrl } from "../utils/spriteUtils";
+
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-// Contenido compartido entre ambas cards — evita duplicación y divs anidados
 function PokemonCardContent({ id, name, sprite, types }) {
     return (
         <>
-            <img src={sprite} alt={name} className="PokemonCardSprite" />
+            <img src={sprite || "/fallback.png"} alt={name} className="PokemonCardSprite" />
             <p className="PokemonCardData" title={`#${id} ${name}`}>#{id} {name}</p>
             <div>
                 {types.map((type) => (
@@ -34,10 +35,10 @@ export function PokemonCard({ id, pokemon }) {
     );
 }
 
-// Extended — extiende PokemonCard con estado de selección y botón
-export function PokemonCardExtended({ pokemon, isSelected, onToggle }) {
+// Extended — extiende PokemonCard con selección, botón y sprite selector
+export function PokemonCardExtended({ pokemon, isSelected, onToggle, spriteType = "home" }) {
     const name   = capitalize(pokemon.name);
-    const sprite = pokemon.sprites.other.home?.front_default || "/fallback.png";
+    const sprite = getSpriteUrl(pokemon.sprites, spriteType);
     const types  = pokemon.types.map((t) => t.type.name);
 
     return (

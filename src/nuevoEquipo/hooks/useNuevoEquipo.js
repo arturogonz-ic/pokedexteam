@@ -9,6 +9,7 @@ export function useNuevoEquipo() {
     const [teamName, setTeamName] = useState("");
     const [teamCreator, setTeamCreator] = useState("");
     const [teamDescription, setTeamDescription] = useState("");
+    const [spriteType, setSpriteType] = useState("home");
 
     function toggleSelect(id) {
         setSelectedIds((prev) => {
@@ -53,5 +54,6 @@ export function useNuevoEquipo() {
         toggleSelect,
         crearEquipo,
         pokemonsSelected: selectedIds.size,
+        spriteType, setSpriteType,
     };
 }
