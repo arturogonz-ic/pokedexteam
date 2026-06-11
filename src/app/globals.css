@@ -181,7 +181,7 @@ header {
 main.indexPage {
   display: grid;
   place-content: center;
-  min-height: 100vh !important;
+  flex: 1;
   background: var(--background);
 }
 .indexCard {
