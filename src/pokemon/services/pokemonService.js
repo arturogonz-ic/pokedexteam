@@ -10,7 +10,7 @@ export const pokemonService = {
         return res.json();
     },
 
-    getRange: async (from = 1, to = 150) => {
+    getRange: async (from = 1, to = 151) => {
         const ids = Array.from({ length: to - from + 1 }, (_, i) => i + from);
         return Promise.all(ids.map((id) => pokemonService.getById(id)));
     },
