@@ -29,6 +29,11 @@
   font-weight: 700;
   color: #222;
   text-decoration: none;
+  line-height: 1;
+}
+#navLogo svg {
+  display: block;
+  flex-shrink: 0;
 }
 #navSettings {
   display: flex;
