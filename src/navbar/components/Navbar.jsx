@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useSpritePreference } from "../../pokemon/hooks/useSpritePreference";
-import { SPRITE_OPTIONS } from "../../pokemon/utils/spriteUtils";
+import { SPRITE_OPTIONS, FALLBACK_OPTIONS } from "../../pokemon/utils/spriteUtils";
 
 export function Navbar() {
     const [open, setOpen] = useState(false);
@@ -52,7 +52,7 @@ export function Navbar() {
                                 <label className="settingLabel">Sprite de respaldo</label>
                                 <p className="settingDesc">Se usa cuando el Pokémon no tiene sprite del estilo seleccionado.</p>
                                 <select className="settingSelect" value={fallbackSprite} onChange={(e) => setFallbackSprite(e.target.value)}>
-                                    {SPRITE_OPTIONS.map((opt) => (
+                                    {FALLBACK_OPTIONS.map((opt) => (
                                         <option key={opt.value} value={opt.value}>{opt.label}</option>
                                     ))}
                                 </select>

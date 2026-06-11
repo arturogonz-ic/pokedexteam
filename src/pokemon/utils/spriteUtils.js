@@ -77,6 +77,12 @@ function resolve(sprites, type) {
     }
 }
 
+export const FALLBACK_OPTIONS = [
+    { value: "home",             label: "3D Home" },
+    { value: "official-artwork", label: "Arte Oficial" },
+    { value: "pixel",            label: "Pixel Clásico" },
+];
+
 export function getSpriteUrl(sprites, type, fallback = "pixel") {
     return (
         resolve(sprites, type) ||
