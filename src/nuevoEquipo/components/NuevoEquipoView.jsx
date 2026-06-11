@@ -1,5 +1,6 @@
 import { PokemonCardExtended } from "../../pokemon/components/PokemonCard";
 import { SPRITE_OPTIONS } from "../../pokemon/utils/spriteUtils";
+import { FILTER_OPTIONS} from "../../pokemon/utils/filterUtils";
 
 export function NuevoEquipoView({
     pokemonData, loading, selectedIds, pokemonsSelected,
@@ -7,6 +8,7 @@ export function NuevoEquipoView({
     onTeamNameChange, onTeamCreatorChange, onTeamDescriptionChange,
     onToggle, onCrear,
     spriteType, onSpriteTypeChange,
+    filter, onFilterChange
 }) {
     return (
         <main>
@@ -16,6 +18,13 @@ export function NuevoEquipoView({
                     <div id="topSection">
                         <h1 id="title">Crear nuevo equipo</h1>
                         <div id="teamCreationButton">
+                            <select
+                                id="filterSelector"
+                                value={filter}
+                                onChange={(e) => onFilterChange(e.target.value)}
+                            >
+                                {FILTER_OPTIONS.map((opt) => (<option key={opt.value} value={opt.value}>{opt.label}</option>))}
+                            </select>
                             <select
                                 id="spriteSelector"
                                 value={spriteType}
