@@ -6,6 +6,7 @@ import { useSpritePreference } from "../../pokemon/hooks/useSpritePreference";
 import { SPRITE_OPTIONS, FALLBACK_OPTIONS } from "../../pokemon/utils/spriteUtils";
 
 const PAGE_TITLES = {
+    "/":         "Bienvenido",
     "/new-team": "Crear nuevo equipo",
     "/teams":    "Equipos existentes",
 };
