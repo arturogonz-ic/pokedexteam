@@ -13,11 +13,6 @@ export function NuevoEquipoView({
         <main>
             <header>
                 <div className="header">
-                    <div id="topSection">
-                        <button type="button" className="createButton" onClick={onCrear}>
-                            ! Crear !
-                        </button>
-                    </div>
                     <div id="team">
                         <input type="text" placeholder="Nombre del Equipo" required className="inputTeam"
                             value={teamName} onChange={(e) => onTeamNameChange(e.target.value)} />
@@ -30,15 +25,20 @@ export function NuevoEquipoView({
                         <p id="pokemonCount" className={pokemonsSelected === 0 || pokemonsSelected === 10 ? "limit" : ""}>
                             Pokémon seleccionados: {pokemonsSelected}/10
                         </p>
-                        <select
-                            id="filterSelector"
-                            value={filter}
-                            onChange={(e) => onFilterChange(e.target.value)}
-                        >
-                            {FILTER_OPTIONS.map((opt) => (
-                                <option key={opt.value} value={opt.value}>{opt.label}</option>
-                            ))}
-                        </select>
+                        <div id="filterAndCreate">
+                            <select
+                                id="filterSelector"
+                                value={filter}
+                                onChange={(e) => onFilterChange(e.target.value)}
+                            >
+                                {FILTER_OPTIONS.map((opt) => (
+                                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                                ))}
+                            </select>
+                            <button type="button" className="createButton" onClick={onCrear}>
+                                ! Crear !
+                            </button>
+                        </div>
                     </div>
                 </div>
             </header>

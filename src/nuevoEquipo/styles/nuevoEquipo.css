@@ -71,3 +71,21 @@
   transform: scale(1.04);
   border: 1px solid rgb(255, 86, 86);
 }
+#filterAndCreate {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#filterSelector{
+  border: 1px solid #cccccc;
+  border-radius: 25px;
+  background-color: #e6e6e6;
+  padding: 5px 10px;
+  transition: 0.4s;
+}
+#filterSelector:hover{
+  transform: scale(1.1);
+  cursor: grab;
+  background-color: #dddddd;
+  border-color: #999999;
+}
