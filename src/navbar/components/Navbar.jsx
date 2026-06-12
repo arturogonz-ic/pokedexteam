@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { SettingsDialog } from "../../shared/components/SettingsDialog";
 
 const PAGE_TITLES = {
@@ -11,9 +11,14 @@ const PAGE_TITLES = {
 
 export function Navbar() {
     const pathname = usePathname();
+    const searchParams = useSearchParams();
     const basePath = "/pokedexteam";
     const route = pathname.startsWith(basePath) ? pathname.slice(basePath.length) || "/" : pathname;
-    const pageTitle = PAGE_TITLES[route];
+    // En /new-team con ?id=... estamos editando, así que cambiamos el título
+    const pageTitle =
+        route === "/new-team" && searchParams.get("id")
+            ? "Editar equipo"
+            : PAGE_TITLES[route];
 
     return (
         <nav className="flex justify-between items-center px-5 py-[10px] bg-white dark:bg-gray-900 border-b border-[#e0e0e0] dark:border-gray-700 sticky top-0 z-[100] relative">

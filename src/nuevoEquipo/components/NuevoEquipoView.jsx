@@ -7,7 +7,7 @@ export function NuevoEquipoView({
     pokemonData, loading, selectedIds, pokemonsSelected,
     teamName, teamCreator, teamDescription,
     onTeamNameChange, onTeamCreatorChange, onTeamDescriptionChange,
-    onToggle, onCrear,
+    onToggle, onCrear, isEdit,
     spriteType, fallbackSprite,
     filter, onFilterChange,
     dialog, onCloseDialog,
@@ -56,7 +56,7 @@ export function NuevoEquipoView({
                                 onClick={onCrear}
                                 className="rounded-[25px] text-xl py-[15px] px-[80px] mr-[10px] hover:scale-[1.04]"
                             >
-                                ! Crear !
+                                {isEdit ? "Guardar cambios" : "! Crear !"}
                             </Button>
                         </div>
                     </div>

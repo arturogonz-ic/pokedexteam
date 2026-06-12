@@ -1,17 +1,35 @@
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { equiposService } from "../../equipos/services/equiposService";
 
 const MAX_POKEMON = 10;
 
 export function useNuevoEquipo() {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const editId = searchParams.get("id"); // si viene ?id=... estamos editando
+    const isEdit = !!editId;
+
     const [selectedIds, setSelectedIds] = useState(new Set());
     const [teamName, setTeamName] = useState("");
     const [teamCreator, setTeamCreator] = useState("");
     const [teamDescription, setTeamDescription] = useState("");
     const [filter, setFilter] = useState("all");
     const [dialog, setDialog] = useState(null); // { title, message, onClose? }
+
+    // En modo edición, precargamos el equipo desde el backend
+    useEffect(() => {
+        if (!editId) return;
+        equiposService
+            .getById(editId)
+            .then((team) => {
+                setTeamName(team.nombre);
+                setTeamCreator(team.creador);
+                setTeamDescription(team.descripcion);
+                setSelectedIds(new Set(team.pokemons));
+            })
+            .catch(() => setDialog({ title: "Error", message: "No se pudo cargar el equipo a editar." }));
+    }, [editId]);
 
     function closeDialog() { setDialog(null); }
 
@@ -31,7 +49,7 @@ export function useNuevoEquipo() {
         });
     }
 
-    function crearEquipo() {
+    async function crearEquipo() {
         if (!teamName || !teamCreator || !teamDescription) {
             setDialog({ title: "Campos incompletos", message: "Por favor llena el nombre, creador y descripción del equipo." });
             return;
@@ -40,13 +58,27 @@ export function useNuevoEquipo() {
             setDialog({ title: "Sin Pokémon", message: "Selecciona al menos un Pokémon." });
             return;
         }
-        equiposService.save({
+        const payload = {
             nombre: teamName,
             creador: teamCreator,
             descripcion: teamDescription,
             pokemons: [...selectedIds],
-        });
-        setDialog({ title: "¡Éxito!", message: "Equipo creado exitosamente.", onClose: () => router.push("/teams") });
+        };
+        try {
+            // Mismo formulario, dos destinos: PATCH si editamos, POST si creamos
+            if (isEdit) {
+                await equiposService.update(editId, payload);
+            } else {
+                await equiposService.save(payload);
+            }
+            setDialog({
+                title: "¡Éxito!",
+                message: isEdit ? "Equipo actualizado correctamente." : "Equipo creado exitosamente.",
+                onClose: () => router.push("/teams"),
+            });
+        } catch {
+            setDialog({ title: "Error", message: "No se pudo guardar el equipo. ¿Está corriendo el backend?" });
+        }
     }
 
     return {
@@ -56,6 +88,7 @@ export function useNuevoEquipo() {
         teamDescription, setTeamDescription,
         toggleSelect,
         crearEquipo,
+        isEdit,
         pokemonsSelected: selectedIds.size,
         filter, setFilter,
         dialog, closeDialog,

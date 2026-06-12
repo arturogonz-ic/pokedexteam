@@ -1,18 +1,19 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { PokemonCard } from "../../pokemon/components/PokemonCard";
 import { Button } from "../../shared/components/Button";
 import { ConfirmDialog } from "../../shared/components/AlertDialog";
 
 export function EquiposView({ teams, pokemonCache, onDelete, spriteType, fallbackSprite }) {
-    const [confirmIndex, setConfirmIndex] = useState(null);
+    const [confirmId, setConfirmId] = useState(null);
 
     return (
         <main className="w-full">
             <ConfirmDialog
-                open={confirmIndex !== null}
-                onClose={() => setConfirmIndex(null)}
-                onConfirm={() => onDelete(confirmIndex)}
+                open={confirmId !== null}
+                onClose={() => setConfirmId(null)}
+                onConfirm={() => onDelete(confirmId)}
                 title="Eliminar equipo"
                 message="¿Estás seguro de que quieres eliminar este equipo? Esta acción no se puede deshacer."
             />
@@ -21,8 +22,8 @@ export function EquiposView({ teams, pokemonCache, onDelete, spriteType, fallbac
                     <p className="dark:text-white">No hay equipos creados aún.</p>
                 ) : (
                     <div className="grid place-items-center gap-2.5 w-[90%]">
-                        {teams.map((team, index) => (
-                            <div key={index} className="grid [grid-template-rows:auto_auto_auto_auto] place-items-center gap-[5px] p-2.5 text-xl w-full shadow-[1px_3px_5px_2px_rgba(0,0,0,0.3)] dark:shadow-[1px_3px_5px_2px_rgba(0,0,0,0.6)] rounded-xl bg-white dark:bg-gray-800">
+                        {teams.map((team) => (
+                            <div key={team.id} className="grid [grid-template-rows:auto_auto_auto_auto] place-items-center gap-[5px] p-2.5 text-xl w-full shadow-[1px_3px_5px_2px_rgba(0,0,0,0.3)] dark:shadow-[1px_3px_5px_2px_rgba(0,0,0,0.6)] rounded-xl bg-white dark:bg-gray-800">
                                 <h2 className="dark:text-white">{team.nombre}</h2>
                                 <div className="text-base dark:text-gray-300">
                                     <p>
@@ -37,9 +38,14 @@ export function EquiposView({ teams, pokemonCache, onDelete, spriteType, fallbac
                                         </div>
                                     ))}
                                 </div>
-                                <Button variant="danger" onClick={() => setConfirmIndex(index)}>
-                                    Eliminar equipo
-                                </Button>
+                                <div className="flex gap-2.5">
+                                    <Link href={`/new-team?id=${team.id}`}>
+                                        <Button>Editar equipo</Button>
+                                    </Link>
+                                    <Button variant="danger" onClick={() => setConfirmId(team.id)}>
+                                        Eliminar equipo
+                                    </Button>
+                                </div>
                             </div>
                         ))}
                     </div>

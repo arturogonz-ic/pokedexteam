@@ -30,7 +30,11 @@ jobs:
 
       - run: pnpm install
 
+      # NEXT_PUBLIC_* se inyecta en build-time y queda embebido en el bundle.
+      # Apunta al backend Express desplegado en Render.
       - run: pnpm build
+        env:
+          NEXT_PUBLIC_API_URL: https://pokedex-api-brjy.onrender.com
 
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -14,7 +14,7 @@ export function NuevoEquipoContainer() {
         teamName, setTeamName,
         teamCreator, setTeamCreator,
         teamDescription, setTeamDescription,
-        toggleSelect, crearEquipo,
+        toggleSelect, crearEquipo, isEdit,
         filter, setFilter,
         dialog, closeDialog,
     } = useNuevoEquipo();
@@ -35,6 +35,7 @@ export function NuevoEquipoContainer() {
             onTeamDescriptionChange={setTeamDescription}
             onToggle={toggleSelect}
             onCrear={crearEquipo}
+            isEdit={isEdit}
             spriteType={spriteType}
             fallbackSprite={fallbackSprite}
             filter={filter}
